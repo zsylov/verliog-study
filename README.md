@@ -1,8 +1,7 @@
 # day2.2019.4.23
 打卡
 1. 画一下电路图：CMOS反相器、与非门、或非门、三态输出门、漏极开路门
-  http://www.docin.com/p-1514530726.html
-  http://www.docin.com/p-56182488.html?docfrom=rrela
+  见DOC文件
 2.解释一下vih,vil,vol,voh,vt,Iddq
 Vil表示最大可靠输入低电平电压Vil(max);
 vih表示最小可靠输入高电平电压Vih(min);//逻辑电路可靠工作的条件，输入高电平必须大于vih,输入低电平电压必须小于vil.
