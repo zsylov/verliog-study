@@ -9,10 +9,29 @@ day4组合逻辑
 2.设计一个2-4译码器
 -----
 ```verilog
-module B();
+module decode(
+                input Sys_clk,
+                input Sys_reset,
+                input [1:0] data_in,
+                output [3:0] data_out
+    );
+    
+  reg [3:0] data_r;
+  always @ (posedge Sys_clk , negedge Sys_reset)
+  	if(!Sys_reset)
+  		data_r <= 4'd0;
+  	else case(data_in)
+  				2'd0: data_r <= 4'b0001;
+  				2'd1: data_r <= 4'b0010;
+  				2'd2: data_r <= 4'b0100;
+  				2'd3: data_r <= 4'b1000;
+  				default : data_r <= 4'b0000;
+  			endcase
+  			
+  assign data_out = data_r;
 endmodule
 ```
-3.输入一个8bit书，输出其中1的个数，如果只能使用1bit全加器，最少需要几个？
+3.输入一个8bit数，输出其中1的个数，如果只能使用1bit全加器，最少需要几个？
 ------
 
 4.如果一个标准单元库只有三个cell：2输入mux(o=s?a:b;),TIEH(输出常数1)，TIEL（输出常数0），如何实现以下功能。
