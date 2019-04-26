@@ -19,7 +19,7 @@
     ```verliog
         always @ (posedge clk , negedge rst)
     ```
-    ![异步电路]()
+    ![异步电路](https://github.com/zsylov/verliog-study/blob/master/04ce31d6cc381bf4fc52b8d70b56fae.png)
     
  3.什么是setup time 和hold time
 ----
