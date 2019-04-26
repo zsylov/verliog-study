@@ -14,7 +14,7 @@
     ```verilog
       always @ (psoedge clk)
     ```
-    ![同步电路]()
+    ![同步电路](https://github.com/zsylov/verliog-study/blob/master/%E2%80%9C/%E2%80%9D/34f73529f6803a70ebb07aee183aae0.png)
   * 异步电路：异步电路没有统一的时钟，信号的触发不仅通过一个时钟，例如：
     ```verliog
         always @ (posedge clk , negedge rst)
@@ -25,7 +25,7 @@
 ----
 * setup time:建立时间(Tsu)指在触发器的时钟信号上升沿到来以前，数据稳定不变的时间，如果建立时间不够，数据将不能在这个时钟上升沿被稳定的打入触发器，Tsu就是指这个最小的稳定时间。
 * hold time:保持时间(Th)指在触发器的时钟信号上升沿到来以后，数据稳定不变的时间，如果保持时间不够，数据同样不能被稳定的打入触发器，Th就是指这个最小的保持时间。
-![时序图]()
+![时序图](https://github.com/zsylov/verliog-study/blob/master/%E2%80%9C/%E2%80%9D/cce319a422679dc4388bc557c337f10.png)
 
 4.设计一个101序列检测器。画出状态转移图，写出verilog，并仿真测试。
 ----
@@ -134,3 +134,10 @@ module test_101();
 				);
 endmodule
 ```
+
+* 仿真结果
+-----
+![仿真](https://github.com/zsylov/verliog-study/blob/master/%E2%80%9C/%E2%80%9D/47e05215e75566c9789cc76c4353025.png)
+
+* 状态转移图
+![state]()
