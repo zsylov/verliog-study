@@ -29,3 +29,67 @@
 
 4.设计一个101序列检测器。画出状态转移图，写出verilog，并仿真测试。
 ----
+```verilog
+module FSM_101(
+					input Sys_clk,
+					input data_in,
+  					input Sys_reset,
+  					output Is_101
+				);
+  parameter[1:0] s0 =2'b00;
+  parameter[1:0] s1 =2'b01; 
+  parameter[1:0] s2 =2'b10; 
+  reg [1:0] state;
+  reg is_101;
+  always @ (posedge clk)
+    if(Sys_reset)
+      	begin
+          state <= 2'd0;
+          is_101 <= 1'b0;
+        end
+  else case(state)
+    	begin
+          s0:
+          	begin
+              if(data_in)
+                begin
+                state <= s1;
+               is_101 <= 1'b0;
+                end
+              else
+                begin
+                state <= s0;
+               is_101 <= 1'b0;
+                end
+            end
+          s1:
+          	begin
+              if(data_in)
+                begin
+                state <= s1;
+              	 is_101 <= 1'b0;
+                end
+               else
+                 begin
+                state <= s2;
+                    is_101 <= 1'b0;
+                end
+            end
+          s2:
+          	begin
+              if(data_in)
+                begin
+                state <= s1;
+              	is_101 <= 1'b1;
+                end
+              else
+                begin
+                state <= s0;
+                is_101 <= 1'b0;
+                end
+            end
+        end
+  endcase
+  assign Is_101=is_101;
+endmodule
+```
