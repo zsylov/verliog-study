@@ -93,3 +93,44 @@ module FSM_101(
   assign Is_101=is_101;
 endmodule
 ```
+testbench
+```verilog
+// Code your testbench here
+// or browse Examples
+`timescale 1ns/1ps
+module test_101();
+  reg Sys_clk;
+  reg data_in;
+  reg Sys_reset;
+  wire Is_101;
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(1);
+
+  		Sys_clk = 0;
+      	Sys_reset = 1;
+      #10
+      Sys_reset = 0;
+      #20
+      data_in =0;
+      #30
+      data_in=1;
+       #20
+      data_in =0;
+      #30
+      data_in=1;
+       #20
+      data_in =0;
+      #30
+      data_in=1;
+    end
+  always #10 Sys_clk =~Sys_clk;
+  FSM_101 FSM_101_inst(
+					Sys_clk,
+					data_in,
+  					Sys_reset,
+  					Is_101
+				);
+endmodule
+```
