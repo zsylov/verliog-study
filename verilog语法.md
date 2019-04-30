@@ -70,117 +70,12 @@ data_out[0]=data_in[3]
 将输入输出的位宽做成参数化
 ```verilog
 // Code your design here
-`timescale 1ns/1ps
-module converter #(parameter IWIDTH = 4,OWIDTH =4) 
-  (
-    				 input [IWIDTH-1:0] data_in,
-    				 output reg [OWIDTH-1:0] data_out,
-    				 input [1:0] mode,
- 					 input clk,
- 					 input rst_n				 
-				);
-  reg [OWIDTH-1:0] data_out_r;
-  reg done;
-       reg [IWIDTH-1:0] count;
-  always @ (posedge clk , negedge rst_n)
-    if(!rst_n)
-      begin
-      	data_out <= 4'd0;
-  		data_out_r<= 4'd0;
-       // done <= 1'b0;
-        count <= 0;
-      end
-  	else case(mode)
-      	2'd0:
-          	begin
-              data_out <= {data_out[3:1],data_in};
-            end
-      	2'd1:
-          	begin
-                  data_out <= data_in[count];
-                  count <= count + 1'b1;
-              if(count ==IWIDTH-1)
-               	begin	
-               		 count <=0;        		
-                end
-              
-            end
-      	2'd2:
-          	begin
-              data_out_r <= data_in;
-              data_out <= data_out_r;
-            end
-      	2'd3:
-          	begin
-              data_out_r<= data_in[0:IWIDTH-1];
-              data_out <= data_out_r;
-            end
-      default:
-        data_out <= 0;
-    endcase
-endmodule
+
 ```
 ```verilog
 // Code your testbench here
 // or browse Examples
-`timescale 1ns/1ps
-module testbench();
-  reg data_in;
-  wire data_out;
-  reg [1:0] mode;
-  reg clk;
-  reg rst_n;
-  initial
-    begin
-      $dumpfile("testbench.vcd");
-      $dumpvars(1);
-      clk = 0;
-      rst_n=0;
-      #100
-      rst_n=0;
-      mode = 0;
-      #100
-      mode = 1;
-      #100
-      mode =2;
-      #100
-      mode =3;
-    end
-  always #10 clk = ~clk;
-  always @ (posedge clk )
-    if(mode == 0)
-      	begin
-          data_in <= 4'b0101;
-          converter (.IWIDTH(4),.OWIDTH(0)) 
-          coverter_inst(data_in,data_out,mode,clk,rst_n);
-        end
-  else if(mode == 1)
-    	begin
-          #20
-          data_1 <= 1'b1;
-          #20
-          data_in <= 1'b0;
-           #20
-          data_1 <= 1'b1;
-          #20
-          data_in <= 1'b0;
-          
-          converter #(.IWIDTH(0),.OWIDTH(4)) 
-          coverter_inst3(data_in,data_out,mode,clk,rst_n);
-        end
-  else if(mode == 2)
-      	begin
-          data_in <= 4'b0111;
-          converter #(.IWIDTH(4),.OWIDTH(4)) 
-          coverter_inst1(data_in,data_out,mode,clk,rst_n);
-        end
-  else if(mode == 3)
-      	begin
-          data_in <= 4'b0101;
-          converter #(.IWIDTH(4),.OWIDTH(4)) 
-          coverter_inst2(data_in,data_out,mode,clk,rst_n);
-        end
-endmodule
+
 ```
 
 记录一下第2题中用到的工具，包括工具版本，操作步骤或命令选项，遇到的错误，提示信息等。比较一下，与昨天的记录有何相同，有何不同。
