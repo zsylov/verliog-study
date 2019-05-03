@@ -1,4 +1,4 @@
-// Code your design here
+```verilog
 `timescale 1ns/1ps
 module converter #(  parameter WIDTH = 4,
                      parameter CNT_WIDTH  = clogb2(WIDTH-1))
@@ -26,11 +26,11 @@ module converter #(  parameter WIDTH = 4,
   	else case(mode)
       	2'd0:
           	begin
-              data_out <= {data_out[3:1],data_in[0]};
+              data_out <= {data_out[2:0],data_in[0]};
             end
       	2'd1:
           	begin
-              data_out[0] <= data_in[count];
+              data_out <= data_in[count];
                  
             end
       	2'd2:
@@ -41,7 +41,7 @@ module converter #(  parameter WIDTH = 4,
       	2'd3:
           	begin
               data_out_r<= data_in;
-              data_out <= data_out_r;
+              data_out[WIDTH-1-count] <= data_out_r[count];
             end
       default:
         data_out <= 0;
@@ -66,7 +66,7 @@ module converter #(  parameter WIDTH = 4,
   always @ (posedge clk ,negedge rst_n)
     if(!rst_n)
       count <= 0;
-  else if(mode_r0 | mode_r1)
+  else if(mode_r0 ^ mode_r1 )
     count <= 0;
   else
     count <= count +1'b1;
@@ -79,3 +79,4 @@ end
 endfunction
     
 endmodule
+```
