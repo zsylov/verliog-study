@@ -80,3 +80,4 @@ endfunction
     
 endmodule
 ```
+![仿真](https://github.com/zsylov/verliog-study/blob/master/%E2%80%9C/%E2%80%9D/converter.PNG)
