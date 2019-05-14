@@ -1,12 +1,17 @@
+# 设计占空比为50%的三分频电路
+
 [时序图工具](https://wavedrom.com/)
 
-{signal: [
-  {name: 'clk',         wave:  'P....P...'},
+{signal: [  
+  {name: 'clk',         wave:  'P....P...'},  
   {name: 'clk1',        wave: 'H.LH.LH.L'},
-  {name: 'clk2',        wave: 'lh.lh.lh.l',phase:0.5},
-  {},
-  {name: 'clk1 & clk2', wave: 'nhlnhlnhp'}
-]}
+  {name: 'clk2',        wave: 'lh.lh.lh.l',phase:0.5},  
+  {},  
+  {name: 'clk1 & clk2', wave: 'nhlnhlnhp'}  
+]}  
+目前各个FPGA厂家一般都有集成的锁相环资源，但在设计对于时钟要求不高的基本设计，通过逻辑进行时钟分频依然有效，还可以节省芯片内部的锁相环资源，其中分频又分为，<kbd>偶数分频</kbd>,<kbd>奇数数分频</kbd>，<kbd>小数分频</kbd>，此次主要涉及奇数分频，设计一个占空比为50%的三分频电路，仿真环境采用edaplayground.com.
+* 奇数分频原理
+分别采用上升沿进行一个占空比为2/3的始终，在次用下降样设计同样的占空比，最后将两者进行相与，得到占空比为50%的三分频电路。
 ```verilog
 ```verilog
 // Code your design here
