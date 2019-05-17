@@ -23,3 +23,4 @@ Iddq:集成电路静止电流（integrated Circuit Quiescent current）器件不
 6. 相同面积的cmos与非门和或非门哪个更快
   互补cmos电路中，与非门采用PMOS管并联，NMOS管串联，或非门才哦哦那个PMOS管串联，NMOS管并联，PMOS采用空穴导电，NMOS采用电子导电，PMOS的载流子的迁移率比NMOS的迁移率小。同样尺寸条件下，PMOS的充电时间要大于NMOS的充电时间，因此与非门速度较快。
   
+https://blog.csdn.net/weixin_42552279/article/details/83933072  
